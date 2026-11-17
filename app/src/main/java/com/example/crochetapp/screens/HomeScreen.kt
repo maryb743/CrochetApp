@@ -1,5 +1,13 @@
 package com.example.crochetapp.screens
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import com.example.crochetapp.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,8 +30,10 @@ private val Willow = Color(0xFFB7B15A)
 fun HomeScreen(
     onNewProject: () -> Unit = {},
     onRowCounter: () -> Unit = {},
-    onContinueProject: () -> Unit = {}
+    onContinueProject: () -> Unit = {},
+    onProfileClick: () -> Unit = {}
 ) {
+
     //screen layout
     Column(
         modifier = Modifier
@@ -41,17 +51,57 @@ fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
 
-            Card(
-                colors = CardDefaults.cardColors(
-                    containerColor = Jasmine
-                ),
-                modifier = Modifier.fillMaxWidth()
+
+            Row(
+
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalAlignment = Alignment.CenterVertically
+
             ) {
-                Text(
-                    text = "What are we making today?",
-                    modifier = Modifier.padding(16.dp)
-                )
+                //welcome message
+                Card(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(65.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Jasmine
+                    )
+                ) {
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 12.dp),
+                        contentAlignment = Alignment.CenterStart
+                    ) {
+
+                        Text(
+                            text = "What are we making today?",
+                            fontSize = 14.sp
+                        )
+                    }
+                }
+
+                // Profile picture
+                Box(
+                    modifier = Modifier
+                        .size(65.dp)
+                        .clip(CircleShape)
+                        .background(Jasmine)
+                        .clickable { onProfileClick() },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.profile_icon),
+                        contentDescription = "Open profile",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                }
             }
+
 
             Card(
                 modifier = Modifier
