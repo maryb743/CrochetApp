@@ -28,27 +28,16 @@ fun HomeScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
-            .padding(16.dp)
-    ) {
-        Text(
-            text = "Home",
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
+            .background(TeaRose)
+    )
+    {
 
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .background(
-                    TeaRose,
-                    RoundedCornerShape(20.dp)
-                )
+                .fillMaxSize()
+                .background(TeaRose)
                 .padding(12.dp),
+
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
 
