@@ -1,56 +1,315 @@
 CROCHET APP - DEVELOPMENT JOURNAL
-=================================
+========================================
 
 PROJECT: CrochetApp
 GITHUB: https://github.com/maryb743/CrochetApp
+LANGUAGE: Kotlin
+UI FRAMEWORK: Jetpack Compose
+ANDROID SDK: 37
 
-=================================
+========================================
 1. AI PROMPT LOG
-=================================
+========================================
 
-Prompt ID:
-Date:
+PROMPT P01 - PROJECT PLANNING AND SETUP
+Date: 17/11/2026
+
 Prompt:
-AI Response:
-Changes I Made:
+"This is the layout I want for the homescreen. How do I accomplish this, I want to first make an Android project started and make my files and first commit."
+
+AI Output:
+ChatGPT provided instructions for setting up an Android Studio project using Kotlin and Jetpack Compose, and organising the project into separate packages for screens, components, navigation, data and ViewModels.
+
+My Work:
+- Created the CrochetApp GitHub repository.
+- Created the Android Studio project.
+- Configured the project to use Android API 37.
+- Began organising the project files.
+
 Testing:
-What I Learned:
-Files Affected:
+Successfully launched the Android project in the emulator.
 
-=================================
-2. DESIGN CHANGES
-=================================
+Files:
+MainActivity.kt, Gradle configuration files.
 
-Date:
-Original Design:
-Change Made:
-Reason for Change:
+----------------------------------------
 
-=================================
-3. TESTING LOG
-=================================
+PROMPT P02 - GIT MERGE ERROR
+Date: 17/11/2026
 
-Date:
-Feature Tested:
-Expected Result:
-Actual Result:
-Pass/Fail:
-Fixes Made:
+Prompt:
+"git push -u origin main" followed by an error stating that the remote repository contained changes not available locally.
 
-=================================
-4. GITHUB COMMITS
-=================================
+AI Output:
+ChatGPT explained that the local and remote repositories had different histories. It suggested pulling remote changes, resolving conflicts and completing the merge.
 
-Date:
-Commit Message:
-Files Changed:
-Description:
+My Work:
+- Used Android Studio's Git tools to work through the merge.
+- Completed the merge with:
+  git commit -m "merge solved"
+- Received guidance to set the upstream branch.
 
-=================================
-5. EXTERNAL SOURCES
-=================================
+Testing:
+Git confirmed the merge commit was created successfully.
 
-Source/URL:
+Learning:
+Understood how Git merges local and remote changes.
+
+----------------------------------------
+
+PROMPT P03 - HOME SCREEN DESIGN
+Date: 17/11/2026
+
+Prompt:
+"I want to start filling the cards with features how do I make the layout similar to my figma design."
+
+AI Output:
+ChatGPT suggested a Home screen containing:
+- Welcome message.
+- Current crochet project.
+
+ChatGPT provided Kotlin Jetpack Compose code which I then edited to look the way I wanted.
+
+My Work:
+- Created HomeScreen.kt in the screens package.
+- added the suggested Compose layout.
+- created buttons and cards
+- Used my chosen pastel colour palette.
+- Connected the Home screen to MainActivity.
+
+Testing:
+Successfully displayed the Home screen in the emulator.
+
+Learning:
+Learned how Compose components and modifiers can be used to create responsive screen layouts.
+
+Files:
+HomeScreen.kt, MainActivity.kt.
+
+----------------------------------------
+
+PROMPT P04 - MAINACTIVITY TROUBLESHOOTING
+Date: 17/11/2026
+
+Prompt:
+I provided an emulator screenshot showing "Hello Android!" instead of my custom Home screen.
+
+AI Output:
+ChatGPT explained that MainActivity was still displaying the default template and suggested replacing the Greeting composable with HomeScreen().
+
+Relevant AI Code:
+
+setContent {
+    CrochetAppTheme {
+        HomeScreen()
+    }
+}
+
+My Work:
+Updated MainActivity to display HomeScreen.
+
+Testing:
+The emulator successfully displayed the custom Home screen instead of "Hello Android!".
+
+Learning:
+Understood how setContent determines which composable is displayed when the application starts.
+
+Files:
+MainActivity.kt.
+
+========================================
+2. DESIGN DECISIONS AND CHANGES
+========================================
+
+DESIGN D01 - APP CONCEPT
+
+App:
+Crochet project tracker.
+
 Purpose:
-Files Used In:
-Changes Made:
+Allow users to organise crochet projects, monitor progress, save inspiration and track completed rows.
+
+Planned Screens:
+- Home
+- My Projects
+- Project Details
+- Inspiration
+- Progress
+- Profile
+
+Project Details will be accessible through My Projects rather than the main navigation bar.
+
+----------------------------------------
+
+DESIGN D02 - COLOUR PALETTE
+
+The app uses a colour palette selected during the Figma design process.
+
+Jasmine:     #FFFAF4
+Tea Rose:    #FFE8E7
+Oleander:    #FFCDCC
+Zinnia:      #EFA0A3
+Primula:     #EBEBBF
+Willow:      #B7B15A
+Cornflower:  #C8DBE4
+Iris:        #97B3C2
+
+----------------------------------------
+
+DESIGN D03 - HOME SCREEN
+
+Original Design:
+Figma wireframe containing a header, welcome section, large central card, two smaller cards and bottom navigation.
+
+Implementation:
+The initial Compose Home screen contains a welcome message, example crochet project, progress bar and shortcut cards.
+
+Difference:
+The large project card currently contains empty space. Project images and additional functionality will be added later.
+
+Reason:
+Build and test the basic interface before implementing database functionality.
+
+========================================
+3. TESTING LOG
+========================================
+
+TEST T01 - ANDROID PROJECT LAUNCH
+
+Expected:
+Application launches in the emulator.
+
+Actual:
+Application launched successfully and displayed the default Android screen.
+
+Result: PASS
+
+----------------------------------------
+
+TEST T02 - CUSTOM HOME SCREEN
+
+Expected:
+Application displays the crochet Home screen.
+
+Actual:
+Application initially displayed "Hello Android!".
+
+Result: FAIL - subsequently fixed.
+
+Fix:
+Updated MainActivity to call HomeScreen().
+
+----------------------------------------
+
+TEST T03 - HOME SCREEN LAYOUT
+
+Expected:
+Display welcome message, current project, progress bar and shortcut cards.
+
+Actual:
+All components displayed successfully in the emulator.
+
+Result: PASS
+
+----------------------------------------
+
+TEST T04 - HOME SCREEN NAVIGATION
+
+Expected:
+Buttons will eventually navigate to their corresponding features.
+
+Actual:
+Buttons currently display but navigation has not yet been implemented.
+
+Result: NOT IMPLEMENTED
+
+========================================
+4. GITHUB DEVELOPMENT HISTORY
+========================================
+
+Repository:
+https://github.com/maryb743/CrochetApp
+
+Confirmed Merge Commit:
+d94e614 - merge solved
+
+Other development milestones:
+- Initial Android project setup.
+- Custom Home screen implementation.
+- Development journal creation.
+
+========================================
+5. EXTERNAL SOURCES AND AI REFERENCES
+========================================
+
+SOURCE S01 - CHATGPT
+
+Tool:
+OpenAI ChatGPT
+
+Purpose:
+Project setup, Git troubleshooting, Jetpack Compose code assistance, debugging and development documentation.
+
+AI-assisted files:
+HomeScreen.kt
+MainActivity.kt
+
+Reference comment for AI-assisted code:
+
+//reference: GenAi see prompt(s) (P03) in report
+
+Additional reference for MainActivity:
+
+//reference: GenAi see prompt(s) (P04) in report
+
+----------------------------------------
+
+SOURCE S02 - FIGMA
+
+Website:
+https://www.figma.com/
+
+Purpose:
+Creating original screen wireframes and planning the application's visual layout.
+
+----------------------------------------
+
+SOURCE S03 - GITHUB
+
+Website:
+https://github.com/
+
+Purpose:
+Version control and incremental development evidence.
+
+========================================
+6. CURRENT PROGRESS
+========================================
+
+Completed:
+- GitHub repository created.
+- Android Studio project created.
+- Android API 37 selected.
+- Git merge completed.
+- HomeScreen.kt created.
+- MainActivity connected to HomeScreen.
+- Initial Home screen displayed successfully.
+
+Still To Implement:
+- Bottom navigation.
+- My Projects screen.
+- Project Details screen.
+- Inspiration screen.
+- Progress screen and row counter.
+- Profile screen.
+- Room database.
+- CRUD functionality.
+- Two additional technical features.
+- Extra UI feature.
+- Second language.
+- Accessibility testing.
+- Final screencast and viva preparation.
+
+========================================
+END 
+========================================
