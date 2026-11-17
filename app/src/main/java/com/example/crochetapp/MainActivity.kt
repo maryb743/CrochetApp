@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.crochetapp.ui.theme.CrochetAppTheme
 import com.example.crochetapp.screens.HomeScreen
+import com.example.crochetapp.navigation.AppNavigation
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CrochetAppTheme {
-                HomeScreen()
+                AppNavigation()
             }
         }
 
