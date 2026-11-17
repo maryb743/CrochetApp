@@ -1,0 +1,56 @@
+CROCHET APP - DEVELOPMENT JOURNAL
+=================================
+
+PROJECT: CrochetApp
+GITHUB: https://github.com/maryb743/CrochetApp
+
+=================================
+1. AI PROMPT LOG
+=================================
+
+Prompt ID:
+Date:
+Prompt:
+AI Response:
+Changes I Made:
+Testing:
+What I Learned:
+Files Affected:
+
+=================================
+2. DESIGN CHANGES
+=================================
+
+Date:
+Original Design:
+Change Made:
+Reason for Change:
+
+=================================
+3. TESTING LOG
+=================================
+
+Date:
+Feature Tested:
+Expected Result:
+Actual Result:
+Pass/Fail:
+Fixes Made:
+
+=================================
+4. GITHUB COMMITS
+=================================
+
+Date:
+Commit Message:
+Files Changed:
+Description:
+
+=================================
+5. EXTERNAL SOURCES
+=================================
+
+Source/URL:
+Purpose:
+Files Used In:
+Changes Made:
