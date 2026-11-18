@@ -22,7 +22,7 @@ fun AppNavigation() {
     val currentEntry by navController.currentBackStackEntryAsState()
     val currentRoute = currentEntry?.destination?.route
 
-    // Display bottom navigation and selected screen
+    //display bottom navigation and selected screen
     Scaffold(
         bottomBar = {
             NavBar(
