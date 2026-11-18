@@ -55,7 +55,16 @@ fun AppNavigation() {
             }
 
             composable("projects") {
-                ProjectsScreen()
+                ProjectsScreen(
+                    onBackClick = {
+                        navController.navigate("home") {
+                            popUpTo("home") {
+                                inclusive = false
+                            }
+                            launchSingleTop = true
+                        }
+                    }
+                )
             }
 
             composable("inspiration") {
