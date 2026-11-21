@@ -20,13 +20,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-//colours
-private val Jasmine = Color(0xFFFFFAF4)
-private val TeaRose = Color(0xFFFFE8E7)
-private val Oleander = Color(0xFFFFCDCC)
-private val Willow = Color(0xFFB7B15A)
+//colour imports
+import com.example.crochetapp.ui.theme.Jasmine
+import com.example.crochetapp.ui.theme.TeaRose
+import com.example.crochetapp.ui.theme.Oleander
+import com.example.crochetapp.ui.theme.Willow
+import com.example.crochetapp.ui.theme.Primula
 
 @Composable
+
+//navigation between all the diff screens
 fun HomeScreen(
     onNewProject: () -> Unit = {},
     onRowCounter: () -> Unit = {},
@@ -34,14 +37,14 @@ fun HomeScreen(
     onProfileClick: () -> Unit = {}
 ) {
 
-    //screen layout
+    //background
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(TeaRose)
     )
     {
-
+    //spacing between screen sections
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -51,7 +54,7 @@ fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
 
-
+            //align profile pic and welcome message
             Row(
 
                 modifier = Modifier.fillMaxWidth(),
@@ -59,131 +62,180 @@ fun HomeScreen(
                 verticalAlignment = Alignment.CenterVertically
 
             ) {
-                //welcome message
+
+                //welcome message card
                 Card(
+
                     modifier = Modifier
                         .weight(1f)
                         .height(65.dp),
                     shape = RoundedCornerShape(12.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = Jasmine
+
                     )
+
                 ) {
 
                     Box(
+
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(horizontal = 12.dp),
                         contentAlignment = Alignment.CenterStart
+
                     ) {
 
                         Text(
+
                             text = "What are we making today?",
                             fontSize = 14.sp
+
                         )
                     }
                 }
 
-                // Profile picture
+                //makes profile image clickable and displays it
                 Box(
+
                     modifier = Modifier
                         .size(65.dp)
                         .clip(CircleShape)
                         .background(Jasmine)
                         .clickable { onProfileClick() },
                     contentAlignment = Alignment.Center
+
                 ) {
+
                     Image(
+
                         painter = painterResource(R.drawable.profile_icon),
                         contentDescription = "Open profile",
                         modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
+
                     )
+
                 }
             }
 
-
+//displays current project and progress
             Card(
+
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f),
                 colors = CardDefaults.cardColors(
                     containerColor = Jasmine
+
                 )
             ) {
+
                 Column(
+
                     modifier = Modifier.padding(16.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
+
                 ) {
                     Text(
+
                         text = "Current Project",
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
+
                     )
 
-                    Text("My Granny Square Blanket")
+                    Text("Hat")
 
                     Text("12 of 20 rows completed")
 
                     LinearProgressIndicator(
+
                         progress = { 0.6f },
                         modifier = Modifier.fillMaxWidth(),
                         color = Willow,
+
                         trackColor = TeaRose
+
                     )
 
                     Button(
+
                         onClick = onContinueProject,
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Oleander,
                             contentColor = Color.Black
+
                         )
+
                     ) {
+
                         Text("Continue Project")
+
                     }
                 }
             }
 
+            //new project and row counter cards
             Row(
+
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
+
             ) {
                 HomeActionCard(
+
                     title = "New Project +",
                     modifier = Modifier.weight(1f),
                     onClick = onNewProject
+
                 )
 
                 HomeActionCard(
+
                     title = "Row Counter",
                     modifier = Modifier.weight(1f),
                     onClick = onRowCounter
+
                 )
             }
+
         }
     }
 }
 
+//reusable homescreen card with onclick actions
 @Composable
 fun HomeActionCard(
+
     title: String,
     modifier: Modifier = Modifier,
     onClick: () -> Unit
+
 ) {
+
     Card(
+
         onClick = onClick,
         modifier = modifier.height(110.dp),
         colors = CardDefaults.cardColors(
+
             containerColor = Jasmine
+
         )
+
     ) {
         Box(
+
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
+
         ) {
             Text(
+
                 text = title,
                 fontWeight = FontWeight.Medium
+
             )
         }
     }
