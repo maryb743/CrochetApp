@@ -2,7 +2,15 @@ package com.example.crochetapp.screens
 
 //imports
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -12,46 +20,50 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.crochetapp.components.ProjectCard
-
-//colour imports
 import com.example.crochetapp.ui.theme.Jasmine
-import com.example.crochetapp.ui.theme.TeaRose
-import com.example.crochetapp.ui.theme.Oleander
-import com.example.crochetapp.ui.theme.Willow
 import com.example.crochetapp.ui.theme.Primula
+import com.example.crochetapp.viewmodel.ProjectViewModel
 
 @Composable
 //navigation, adding new proj and selecting
 fun ProjectsScreen(
+    projectViewModel: ProjectViewModel,
     onBackClick: () -> Unit = {},
     onAddProject: () -> Unit = {},
     onProjectClick: (String) -> Unit = {}
 ) {
+
     //variable to store users search input
     var searchText by rememberSaveable {
         mutableStateOf("")
 
     }
-
-    //temp projects to test
-    val projects = listOf(
-        "Project 1",
-        "Project 2"
+    //get saved projects from the database
+    val projects by projectViewModel.allProjects.collectAsState(
+        initial = emptyList()
     )
+
     //filters projects based on users searchs
     val searchedProjects = projects.filter {
 
-        it.contains(searchText, ignoreCase = true)
-
+        it.name.contains(searchText, ignoreCase = true)
     }
+
     //creates vertical screen layout
     Column(
 
@@ -160,11 +172,11 @@ fun ProjectsScreen(
             verticalArrangement = Arrangement.spacedBy(28.dp),
             modifier = Modifier.fillMaxSize()
         ) {
-            items(searchedProjects) { project ->
+            items(searchedProjects, key = { it.id }) { project ->
                 ProjectCard(
-                    projectName = project,
+                    projectName = project.name,
                     onDetailsClick = {
-                        onProjectClick(project)
+                        onProjectClick(project.name)
                     }
                 )
             }

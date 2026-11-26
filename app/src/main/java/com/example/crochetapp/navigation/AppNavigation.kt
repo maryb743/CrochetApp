@@ -28,7 +28,7 @@ import com.example.crochetapp.ui.theme.Willow
 import com.example.crochetapp.ui.theme.Primula
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(projectViewModel: ProjectViewModel) {
 
     //current screen
     var currentDestination by rememberSaveable {
@@ -128,6 +128,7 @@ fun AppNavigation() {
 
                 //projectscreen
                 AppDestinations.PROJECTS -> ProjectsScreen(
+                    projectViewModel = projectViewModel,
                     onBackClick = {
                         currentDestination = AppDestinations.HOME
                     }
