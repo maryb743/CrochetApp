@@ -95,7 +95,7 @@ fun ProjectsScreen(
         )
     }
 
-    //displays the form for editing an existing project
+//displays the form for editing an existing project
     selectedProject?.let { project ->
 
         AddProjectForm(
@@ -107,6 +107,11 @@ fun ProjectsScreen(
 
             onSave = { updatedProject ->
                 projectViewModel.updateProject(updatedProject)
+                selectedProject = null
+            },
+
+            onDelete = {
+                projectViewModel.deleteProject(project)
                 selectedProject = null
             }
         )

@@ -13,11 +13,10 @@ import com.example.crochetapp.ui.theme.Willow
 
 @Composable
 fun AddProjectForm(
-
     existingProject: ProjectEntity? = null,
     onDismiss: () -> Unit,
-    onSave: (ProjectEntity) -> Unit
-
+    onSave: (ProjectEntity) -> Unit,
+    onDelete: () -> Unit = {}
 ) {
 
 //stores new or existing project details
@@ -140,10 +139,21 @@ fun AddProjectForm(
         },
 
         dismissButton = {
+            Row {
 
-            TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                //only displays delete button when editing
+                if (existingProject != null) {
+                    TextButton(onClick = onDelete) {
+                        Text(
+                            "Delete",
+                            color = MaterialTheme.colorScheme.error
+                        )
+                    }
+                }
 
+                TextButton(onClick = onDismiss) {
+                    Text("Cancel")
+                }
             }
         }
     )
