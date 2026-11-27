@@ -14,17 +14,32 @@ import com.example.crochetapp.ui.theme.Willow
 @Composable
 fun AddProjectForm(
 
+    existingProject: ProjectEntity? = null,
     onDismiss: () -> Unit,
     onSave: (ProjectEntity) -> Unit
 
 ) {
 
-    // Stores the user's input
-    var name by remember { mutableStateOf("") }
-    var description by remember { mutableStateOf("") }
-    var yarn by remember { mutableStateOf("") }
-    var hookSize by remember { mutableStateOf("") }
-    var status by remember { mutableStateOf("In Progress") }
+//stores new or existing project details
+    var name by remember {
+        mutableStateOf(existingProject?.name ?: "")
+    }
+
+    var description by remember {
+        mutableStateOf(existingProject?.description ?: "")
+    }
+
+    var yarn by remember {
+        mutableStateOf(existingProject?.yarn ?: "")
+    }
+
+    var hookSize by remember {
+        mutableStateOf(existingProject?.hookSize ?: "")
+    }
+
+    var status by remember {
+        mutableStateOf(existingProject?.status ?: "In Progress")
+    }
 
     AlertDialog(
 
@@ -32,11 +47,13 @@ fun AddProjectForm(
         containerColor = Jasmine,
 
         title = {
-
-            Text("New crochet project")
-
+            Text(
+                if (existingProject == null)
+                    "New crochet project"
+                else
+                    "Edit crochet project"
+            )
         },
-
         text = {
             Column(
 
@@ -105,6 +122,8 @@ fun AddProjectForm(
                     onSave(
 
                         ProjectEntity(
+
+                            id = existingProject?.id ?: 0,
                             name = name.trim(),
                             description = description,
                             yarn = yarn,

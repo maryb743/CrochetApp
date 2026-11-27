@@ -38,21 +38,38 @@ import com.example.crochetapp.components.ProjectCard
 import com.example.crochetapp.ui.theme.Jasmine
 import com.example.crochetapp.ui.theme.Primula
 import com.example.crochetapp.viewmodel.ProjectViewModel
+import com.example.crochetapp.components.AddProjectForm
+import com.example.crochetapp.data.local.ProjectEntity
 
 @Composable
 //navigation, adding new proj and selecting
 fun ProjectsScreen(
+
     projectViewModel: ProjectViewModel,
     onBackClick: () -> Unit = {},
     onAddProject: () -> Unit = {},
     onProjectClick: (String) -> Unit = {}
+
 ) {
 
     //variable to store users search input
     var searchText by rememberSaveable {
+
         mutableStateOf("")
 
     }
+
+    //controls whether the add project form is visible
+    var showAddProjectForm by rememberSaveable {
+
+        mutableStateOf(false)
+    }
+
+    //stores the project selected for editing
+    var selectedProject by rememberSaveable {
+        mutableStateOf<ProjectEntity?>(null)
+    }
+
     //get saved projects from the database
     val projects by projectViewModel.allProjects.collectAsState(
         initial = emptyList()
@@ -62,6 +79,37 @@ fun ProjectsScreen(
     val searchedProjects = projects.filter {
 
         it.name.contains(searchText, ignoreCase = true)
+    }
+
+    //displays the add project form when the plus button is clicked
+    if (showAddProjectForm) {
+
+        AddProjectForm(
+            onDismiss = {
+                showAddProjectForm = false
+            },
+            onSave = { project ->
+                projectViewModel.insertProject(project)
+                showAddProjectForm = false
+            }
+        )
+    }
+
+    //displays the form for editing an existing project
+    selectedProject?.let { project ->
+
+        AddProjectForm(
+            existingProject = project,
+
+            onDismiss = {
+                selectedProject = null
+            },
+
+            onSave = { updatedProject ->
+                projectViewModel.updateProject(updatedProject)
+                selectedProject = null
+            }
+        )
     }
 
     //creates vertical screen layout
@@ -106,7 +154,9 @@ fun ProjectsScreen(
             //addproject button
             IconButton(
 
-                onClick = onAddProject,
+                onClick = {
+                    showAddProjectForm = true
+                },
                 modifier = Modifier
                     .size(40.dp)
                     .background(Jasmine, CircleShape)
@@ -176,7 +226,7 @@ fun ProjectsScreen(
                 ProjectCard(
                     projectName = project.name,
                     onDetailsClick = {
-                        onProjectClick(project.name)
+                        selectedProject = project
                     }
                 )
             }
