@@ -20,6 +20,7 @@ import com.example.crochetapp.screens.HomeScreen
 import com.example.crochetapp.screens.ProjectsScreen
 import com.example.crochetapp.screens.InspirationScreen
 import com.example.crochetapp.screens.ProfileScreen
+import com.example.crochetapp.viewmodel.ProjectViewModel
 //colour imports
 import com.example.crochetapp.ui.theme.Jasmine
 import com.example.crochetapp.ui.theme.TeaRose
