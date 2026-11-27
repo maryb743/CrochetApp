@@ -21,13 +21,13 @@ import com.example.crochetapp.screens.ProjectsScreen
 import com.example.crochetapp.screens.InspirationScreen
 import com.example.crochetapp.screens.ProfileScreen
 import com.example.crochetapp.viewmodel.ProjectViewModel
-import com.example.crochetapp.screens.InspirationScreen
 //colour imports
 import com.example.crochetapp.ui.theme.Jasmine
 import com.example.crochetapp.ui.theme.TeaRose
 import com.example.crochetapp.ui.theme.Oleander
 import com.example.crochetapp.ui.theme.Willow
 import com.example.crochetapp.ui.theme.Primula
+import com.example.crochetapp.ui.theme.Iris
 
 @Composable
 fun AppNavigation(projectViewModel: ProjectViewModel) {
@@ -45,6 +45,7 @@ fun AppNavigation(projectViewModel: ProjectViewModel) {
 
         AppDestinations.HOME -> Oleander
         AppDestinations.PROJECTS -> Willow
+        AppDestinations.INSPIRATION -> Iris
         else -> Willow
 
     }
