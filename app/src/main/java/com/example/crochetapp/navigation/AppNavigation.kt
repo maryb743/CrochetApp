@@ -21,6 +21,7 @@ import com.example.crochetapp.screens.ProjectsScreen
 import com.example.crochetapp.screens.InspirationScreen
 import com.example.crochetapp.screens.ProfileScreen
 import com.example.crochetapp.viewmodel.ProjectViewModel
+import com.example.crochetapp.screens.InspirationScreen
 //colour imports
 import com.example.crochetapp.ui.theme.Jasmine
 import com.example.crochetapp.ui.theme.TeaRose
@@ -135,7 +136,7 @@ fun AppNavigation(projectViewModel: ProjectViewModel) {
                     }
                 )
 
-                //inspo screen(tobeadded)
+                //inspiration screen
                 AppDestinations.INSPIRATION -> InspirationScreen()
 
                 //profile screen(tbadded)

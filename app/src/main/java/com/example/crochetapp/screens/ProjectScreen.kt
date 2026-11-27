@@ -40,6 +40,7 @@ import com.example.crochetapp.ui.theme.Primula
 import com.example.crochetapp.viewmodel.ProjectViewModel
 import com.example.crochetapp.components.AddProjectForm
 import com.example.crochetapp.data.local.ProjectEntity
+import androidx.compose.runtime.remember
 
 @Composable
 //navigation, adding new proj and selecting
@@ -65,8 +66,8 @@ fun ProjectsScreen(
         mutableStateOf(false)
     }
 
-    //stores the project selected for editing
-    var selectedProject by rememberSaveable {
+//stores the project selected for editing
+    var selectedProject by remember {
         mutableStateOf<ProjectEntity?>(null)
     }
 

@@ -1,14 +1,37 @@
 package com.example.crochetapp.screens
 
+//imports
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-//colour imports
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.crochetapp.ui.theme.Jasmine
-import com.example.crochetapp.ui.theme.TeaRose
-import com.example.crochetapp.ui.theme.Oleander
-import com.example.crochetapp.ui.theme.Willow
-import com.example.crochetapp.ui.theme.Primula
+import com.example.crochetapp.screens.InspirationScreen
+
 @Composable
 fun InspirationScreen() {
-    Text("Inspo!")
+
+    //creates vertical screen layout
+    Column(
+
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Jasmine)
+            .padding(20.dp)
+
+    ) {
+
+        //screen heading
+        Text(
+
+            text = "Inspiration",
+            fontSize = 28.sp
+
+        )
+    }
 }
